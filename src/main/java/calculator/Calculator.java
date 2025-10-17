@@ -9,7 +9,8 @@ public class Calculator {
         System.out.println("덧셈할 문자열을 입력해 주세요.");
         String input = Console.readLine();
         String[] inputs = splitInput(input);
-        System.out.println("입력된 숫자 값: " + Arrays.toString(inputs));
+        int result = calculateInput(inputs);
+        System.out.println("결과: " + result);
     }
 
     private String[] splitInput(String input) {
@@ -30,5 +31,13 @@ public class Calculator {
         }
 
         return inputs.split(delimiter);
+    }
+
+    private int calculateInput(String[] inputs) {
+        int sum = 0;
+        for(String input: inputs) {
+            sum += Integer.parseInt(input);
+        }
+        return sum;
     }
 }
