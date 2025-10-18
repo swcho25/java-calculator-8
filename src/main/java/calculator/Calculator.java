@@ -13,7 +13,7 @@ public class Calculator {
 
         String[] inputs = splitInput(input);
         int result = calculateInput(inputs);
-        System.out.println("결과: " + result);
+        System.out.println("결과 : " + result);
     }
 
     private String[] splitInput(String input) {
@@ -23,6 +23,9 @@ public class Calculator {
         if (input.startsWith("//")) {
             // "\n"만 사용하면 엔터값으로 인식하기 때문에 "\n"을 문자 자체로 인식하기 위해 "\\n" 사용
             int delimiterIndex = input.indexOf("\\n");
+            if(delimiterIndex == -1) {
+                throw new IllegalArgumentException("커스텀 구분자 선언 형식이 잘못되었습니다.");
+            }
             // quote() -> .이나 ;와 같은 예약어와 같이 특별한 의미를 갖는 문자를 일반 문자로 인식하게 함
             customDelimiter = Pattern.quote(input.substring(2, delimiterIndex));
             inputs = input.substring(delimiterIndex + 2);
@@ -59,12 +62,6 @@ public class Calculator {
         // 입력된 문자열에 구분자만 작성된 경우
         if(input.matches("^[^0-9]+$")) {
             throw new IllegalArgumentException("숫자가 입력되지 않았습니다.");
-        }
-        // 입력된 문자열에 구분자가 비정상적으로 입력된 경우
-        if(hasCustom) {
-            if(!input.contains("\n")){
-                throw new IllegalArgumentException("커스텀 구분자 선언 형식이 잘못되었습니다.");
-            }
         }
     }
 
