@@ -39,7 +39,8 @@ public class Calculator {
     private int calculateInput(String[] inputs) {
         int sum = 0;
         for(String input: inputs) {
-            sum += Integer.parseInt(input);
+            int num = checkNumber(input, sum);
+            sum += num;
         }
         return sum;
     }
@@ -64,6 +65,25 @@ public class Calculator {
             if(!input.contains("\n")){
                 throw new IllegalArgumentException("커스텀 구분자 선언 형식이 잘못되었습니다.");
             }
+        }
+    }
+
+    private int checkNumber (String input, int sum) {
+        try {
+            int number = Integer.parseInt(input);
+
+            // 양수가 아닌 경우
+            if(number <= 0) {
+                throw new IllegalArgumentException("입력된 수가 양수가 아닙니다.");
+            }
+            // 오버플로우가 발생하는 경우
+            if(sum > Integer.MAX_VALUE-number) {
+                throw new IllegalArgumentException("숫자 크기가 입력 가능한 범위를 초과했습니다.");
+            }
+
+            return number;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("숫자가 아닌 값이 포함되어 있습니다.");
         }
     }
 }
