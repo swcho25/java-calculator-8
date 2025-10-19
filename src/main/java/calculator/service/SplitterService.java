@@ -2,7 +2,14 @@ package calculator.service;
 
 import java.util.regex.Pattern;
 
+/** 입력된 문자열을 구분자를 통해 구분하는 클래스 */
 public class SplitterService {
+
+    /**
+     * 입력된 문자열을 구분자를 통해서 구분한 후 배열 형식으로 반환합니다.
+     * @param input 입력받은 문자열
+     * @return 구분된 문자로 구성된 배열
+     */
     public String[] splitInput(String input) {
         String customDelimiter = "";
         String inputs = input;

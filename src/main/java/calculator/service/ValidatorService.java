@@ -1,6 +1,13 @@
 package calculator.service;
 
+/** 입력된 문자열을 검증하는 클래스 */
 public class ValidatorService {
+
+    /**
+     * 입력된 문자열을 검증합니다.
+     * @param input 입력된 문자열
+     * @throws IllegalArgumentException 문자열이 정상 입력되지 않았을 때 예외 발생
+     */
     public void checkInput(String input) {
         // 입력 요청 시 값이 입력되지 않은 경우
         if(input==null) {
